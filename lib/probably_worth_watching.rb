@@ -1,0 +1,4 @@
+module ProbablyWorthWatching
+end
+
+require_relative 'probably_worth_watching/filter_chain'

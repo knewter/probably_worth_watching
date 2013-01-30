@@ -31,3 +31,8 @@ I'm envisioning the filter chain being built like this:
     chain << PostsVideosToTheSite.new
 
 Then the chain can be executed on a given tweet by calling chain.execute(tweet)
+
+## Development
+To run the tests:
+
+    rake
