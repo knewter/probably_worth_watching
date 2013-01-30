@@ -1,8 +1,6 @@
 require_relative '../spec_helper'
 
 describe FindsLinksFilter do
-  subject { FindsLinksFilter.new }
-
   it "rejects a tweet with no links" do
     tweet = Tweet.new(content: "No links here...")
     FindsLinksFilter.new.call(tweet).must_equal nil
