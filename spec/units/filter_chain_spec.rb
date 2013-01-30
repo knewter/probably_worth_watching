@@ -18,9 +18,9 @@ describe FilterChain do
   describe 'execute' do
     before do
       @mock_tweet = mock 'tweet'
-
       @mock_filter = mock 'filter'
     end
+
     it 'executes the chain on a given object' do
       @mock_filter.expects(:call).with(@mock_tweet).returns(@mock_tweet)
 
