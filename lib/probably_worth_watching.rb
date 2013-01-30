@@ -2,3 +2,5 @@ module ProbablyWorthWatching
 end
 
 require_relative 'probably_worth_watching/filter_chain'
+require_relative 'probably_worth_watching/tweet'
+require_relative 'probably_worth_watching/finds_links_filter'

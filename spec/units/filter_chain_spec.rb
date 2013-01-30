@@ -30,6 +30,8 @@ describe FilterChain do
 
     it 'sends the output of one filter to the input of the next' do
       @second_filter = mock 'second filter'
+      @modified_tweet = mock 'modified tweet'
+
       @mock_filter.stubs(:call).returns(@modified_tweet)
       @second_filter.expects(:call).with(@modified_tweet)
 
@@ -43,6 +45,17 @@ describe FilterChain do
 
       subject << @mock_filter
       subject.execute(@mock_tweet).must_equal 1
+    end
+
+    it 'halts the filter chain if any filter returns something falsey' do
+      @second_filter = mock 'second_filter'
+
+      @mock_filter.stubs(:call).returns(false)
+      @second_filter.expects(:call).never
+
+      subject << @mock_filter
+      subject << @second_filter
+      subject.execute(@mock_tweet)
     end
   end
 end

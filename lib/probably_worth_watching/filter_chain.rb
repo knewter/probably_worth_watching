@@ -12,7 +12,9 @@ module ProbablyWorthWatching
     end
 
     def execute(object)
-      filter_list.map{|filter| object = filter.call(object) }
+      filter_list.map do |filter|
+        object = filter.call(object) if object
+      end
       object
     end
   end
