@@ -2,6 +2,7 @@ require 'bundler/setup'
 
 require 'minitest/spec'
 require 'turn/autorun'
+require 'mocha/setup'
 
 Turn.config.format = :outline
 
