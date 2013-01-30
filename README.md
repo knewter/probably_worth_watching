@@ -12,7 +12,7 @@ topic (say, ruby)
 4. The `FindsVideosFilter` follows the links, and filters out any tweets that
 don't have embedded videos in them (vimeo, youtube, etc.)  It replaces the `Tweet`
 on the chain with a `TweetWithVideos` (which is just a decorator for the `Tweet`
-value object, but with an @`videos` instance variable, which is an array of `Video`
+value object, but with an `@videos` instance variable, which is an array of `Video`
 value objects).
 5. The `GathersVideoMetadataAnalyzer` analyzes the videos and replaces the `Video`
 value objects with clones, with extra metadata (title, duration, etc).
