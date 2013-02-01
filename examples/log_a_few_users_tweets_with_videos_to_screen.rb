@@ -8,21 +8,21 @@ twitter_config = {
   oauth_token_secret: ENV["TWITTER_OAUTH_TOKEN_SECRET"]
 }
 
-twitter = GetsTweets.new(twitter_config)
-
 output = StringIO.new
 
 video_printer = lambda do |tweet|
   String.new.tap do |s|
-    s << tweet.inspect
+    s << tweet.inspect + "\n"
     tweet.videos.each do |video|
-      s << video.title
-      s << video.description
-      s << video.url
-      s << "----------"
+      s << video.title + "\n"
+      s << video.description + "\n"
+      s << video.url + "\n"
+      s << "----------" + "\n" + "\n"
     end
   end
 end
+
+twitter = GetsTweets.new(twitter_config)
 
 twitter.tweets_from(%w(knewter adamgamble)).each do |tweet|
   chain = FilterChain.new
