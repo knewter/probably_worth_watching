@@ -2,10 +2,12 @@ require_relative '../spec_helper'
 
 describe FindsVideosFilter do
   it "rejects a tweet with no videos" do
-    skip
     tweet = mock
+    tweet.stubs(:links).returns [1]
+    HtmlGrabber.any_instance.stubs(:call).returns nil
+    VideoExtractors::VimeoExtractor.any_instance.expects(:videos).returns([]).at_least_once
 
-    FindsVideosFilter.new.call(tweet).must_equal nil
+    assert_equal nil, FindsVideosFilter.new.call(tweet)
   end
 
   it "returns a TweetWithVideo, if the input tweet had a video in it" do

@@ -19,7 +19,7 @@ module ProbablyWorthWatching
     def videos_for(object)
       object.links.map do |link|
         VideoExtractors::VimeoExtractor.new(html_for_link(link)).videos
-      end
+      end.flatten
     end
 
     def html_for_link(link)
