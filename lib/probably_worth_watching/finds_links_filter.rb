@@ -16,6 +16,20 @@ module ProbablyWorthWatching
     end
 
     def links_for(object)
+      legitimate_links_from(extracted_links_for(object))
+    end
+
+    def legitimate_links_from(links)
+      links.select do |link|
+        begin
+          URI.parse(link)
+        rescue URI::InvalidURIError
+          false
+        end
+      end
+    end
+
+    def extracted_links_for(object)
       URI.extract(object.content)
     end
 

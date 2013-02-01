@@ -7,6 +7,14 @@ GIT
       method_source (~> 0.8)
       slop (~> 3.4)
 
+GIT
+  remote: git://github.com/tarcieri/http.git
+  revision: 78331b0feba6538153f57b8ce1d094b9d9cd94fa
+  specs:
+    http (1.0.0.pre)
+      certified
+      http_parser.rb
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -15,19 +23,38 @@ GEM
     certified (0.1.1)
     coderay (1.0.8)
     descendants_tracker (0.0.1)
-    http (0.4.0)
-      certified
-      http_parser.rb
+    faraday (0.8.4)
+      multipart-post (~> 1.1)
     http_parser.rb (0.5.3)
+    httparty (0.10.2)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
+    httpclient (2.3.2)
+    json (1.7.6)
     metaclass (0.0.1)
     method_source (0.8.1)
     minitest (4.5.0)
     mocha (0.13.2)
       metaclass (~> 0.0.1)
+    multi_json (1.5.0)
+    multi_xml (0.5.2)
+    multipart-post (1.1.5)
     nokogiri (1.5.6)
+    oauth (0.4.7)
+    simple_oauth (0.2.0)
     slop (3.4.3)
     turn (0.9.6)
       ansi
+    twitter (4.5.0)
+      faraday (~> 0.8, < 0.10)
+      multi_json (~> 1.0)
+      simple_oauth (~> 0.2)
+    vimeo (1.5.3)
+      httparty (>= 0.4.5)
+      httpclient (>= 2.1.5.2)
+      json (>= 1.1.9)
+      multipart-post (>= 1.0.1)
+      oauth (>= 0.4.3)
     virtus (0.5.4)
       backports (~> 2.6.1)
       descendants_tracker (~> 0.0.1)
@@ -36,10 +63,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  http
+  http!
   minitest
   mocha
   nokogiri
   pry!
   turn
+  twitter
+  vimeo
   virtus
