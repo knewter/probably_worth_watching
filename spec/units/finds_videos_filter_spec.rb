@@ -14,6 +14,7 @@ describe FindsVideosFilter do
     tweet.stubs(:links).returns [1]
     HtmlGrabber.any_instance.stubs(:call).returns mock_html
     VideoExtractors::VimeoExtractor.any_instance.expects(:videos).returns([]).at_least_once
+    VideoExtractors::YoutubeExtractor.any_instance.expects(:videos).returns([]).at_least_once
 
     assert_equal nil, FindsVideosFilter.new.call(tweet)
   end
@@ -24,6 +25,7 @@ describe FindsVideosFilter do
     HtmlGrabber.any_instance.stubs(:call).returns mock_html
     mock_video = mock 'video'
     VideoExtractors::VimeoExtractor.any_instance.expects(:videos).returns([mock_video]).at_least_once
+    VideoExtractors::YoutubeExtractor.any_instance.expects(:videos).returns([]).at_least_once
 
     filter = FindsVideosFilter.new
     assert_instance_of TweetWithVideos, filter.call(tweet)

@@ -19,7 +19,7 @@ module ProbablyWorthWatching
       object.links.map do |link|
         html = html_for_link(link)
         if(html)
-          VideoExtractors::VimeoExtractor.new(html).videos
+          VideoExtractors.extract_videos(html)
         else
           nil
         end
