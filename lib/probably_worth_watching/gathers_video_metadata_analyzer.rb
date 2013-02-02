@@ -11,7 +11,7 @@ module ProbablyWorthWatching
     def decorated_object(object)
       TweetWithVideos.new(object.__getobj__).tap do |t|
         videos = object.videos.map do |url|
-          Adapters::VimeoAdapter.new.get_video_info_for_url(url)
+          Adapters.adapter_for(url).new.get_video_info_for_url(url)
         end
         t.add_videos videos
       end

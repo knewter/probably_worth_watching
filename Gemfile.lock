@@ -12,6 +12,7 @@ GEM
   specs:
     ansi (1.4.3)
     backports (2.6.7)
+    builder (3.1.4)
     celluloid (0.12.4)
       facter (>= 1.6.12)
       timers (>= 1.0.0)
@@ -23,8 +24,11 @@ GEM
     httparty (0.10.2)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
+    httpauth (0.2.0)
     httpclient (2.3.2)
     json (1.7.6)
+    jwt (0.1.5)
+      multi_json (>= 1.0)
     metaclass (0.0.1)
     method_source (0.8.1)
     minitest (4.5.0)
@@ -35,6 +39,13 @@ GEM
     multipart-post (1.1.5)
     nokogiri (1.5.6)
     oauth (0.4.7)
+    oauth2 (0.8.0)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    rack (1.5.1)
     simple_oauth (0.2.0)
     slop (3.4.3)
     timers (1.1.0)
@@ -53,6 +64,13 @@ GEM
     virtus (0.5.4)
       backports (~> 2.6.1)
       descendants_tracker (~> 0.0.1)
+    youtube_it (2.1.12)
+      builder
+      faraday (~> 0.8)
+      nokogiri (~> 1.5.2)
+      oauth (~> 0.4.4)
+      oauth2 (~> 0.6)
+      simple_oauth (>= 0.1.5)
 
 PLATFORMS
   ruby
@@ -68,3 +86,4 @@ DEPENDENCIES
   twitter
   vimeo
   virtus
+  youtube_it

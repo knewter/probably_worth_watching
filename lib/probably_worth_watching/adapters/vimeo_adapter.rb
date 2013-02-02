@@ -6,6 +6,15 @@ module ProbablyWorthWatching
       def initialize
       end
 
+      def get_video_info_for_url(url)
+        get_video_info(extract_id_from_url(url))
+      end
+
+      def self.handles_url?(url)
+        url =~ /vimeo.com/
+      end
+
+      private
       def get_video_info(id)
         Video.new.tap do |video|
           info = get_video_info_in_vimeo_format(id)
@@ -16,11 +25,6 @@ module ProbablyWorthWatching
         end
       end
 
-      def get_video_info_for_url(url)
-        get_video_info(extract_id_from_url(url))
-      end
-
-      private
       def extract_id_from_url(url)
         URI.parse(url).path.split('/')[-1]
       end

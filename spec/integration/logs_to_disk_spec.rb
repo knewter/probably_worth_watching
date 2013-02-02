@@ -8,7 +8,7 @@ describe "Running a tweet through and having it logged to an IO object" do
   it "writes the inspected tweet to the IO the logger was instantiated against" do
     s = StringIO.new
     chain = FilterChain.new
-    chain << Logger.new(s)
+    chain << ProbablyWorthWatching::Logger.new(s)
     chain.execute(@tweet)
     s.rewind
     output = s.read

@@ -13,6 +13,8 @@ describe GathersVideoMetadataAnalyzer do
 
   describe "calling" do
     before do
+      Adapters::VimeoAdapter.expects(:handles_url?).with(mock_vimeo_video_url).returns(true)
+      Adapters::YoutubeAdapter.stubs(:handles_url?).with(mock_vimeo_video_url).returns(true)
       Adapters::VimeoAdapter.any_instance.expects(:get_video_info_for_url).with(mock_vimeo_video_url)
     end
 
