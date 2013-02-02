@@ -8,7 +8,9 @@ gem 'pry', github: 'pry/pry'
 # end test bits
 
 gem 'virtus'
-gem 'http', github: 'tarcieri/http'
+#gem 'http', github: 'tarcieri/http'
+gem 'httparty'
 gem 'nokogiri'
 gem 'vimeo'
 gem 'twitter'
+gem 'celluloid'

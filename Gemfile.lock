@@ -7,25 +7,19 @@ GIT
       method_source (~> 0.8)
       slop (~> 3.4)
 
-GIT
-  remote: git://github.com/tarcieri/http.git
-  revision: 78331b0feba6538153f57b8ce1d094b9d9cd94fa
-  specs:
-    http (1.0.0.pre)
-      certified
-      http_parser.rb
-
 GEM
   remote: http://rubygems.org/
   specs:
     ansi (1.4.3)
     backports (2.6.7)
-    certified (0.1.1)
+    celluloid (0.12.4)
+      facter (>= 1.6.12)
+      timers (>= 1.0.0)
     coderay (1.0.8)
     descendants_tracker (0.0.1)
+    facter (1.6.17)
     faraday (0.8.4)
       multipart-post (~> 1.1)
-    http_parser.rb (0.5.3)
     httparty (0.10.2)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
@@ -43,6 +37,7 @@ GEM
     oauth (0.4.7)
     simple_oauth (0.2.0)
     slop (3.4.3)
+    timers (1.1.0)
     turn (0.9.6)
       ansi
     twitter (4.5.0)
@@ -63,7 +58,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  http!
+  celluloid
+  httparty
   minitest
   mocha
   nokogiri
