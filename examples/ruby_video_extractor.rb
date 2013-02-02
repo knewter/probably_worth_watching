@@ -70,12 +70,59 @@ tweeters = %w(
   jimweirich
   peterc
   wycats
+  _solnic_
+  the_zenspider
+  mfeathers
+  konstantinhaase
+  r00k
+  dkubb
+  eliseworthy
+  brynary
+  geeksam
+  kytrinyx
+  mattwynne
+  kevinrutherford
+  sarahmei
+  mpapis
+  sandimetz
+  steveklabnik
+  jstorimer
+  russolsen
+  PragmaticAndy
+  merbist
+  edavis10
+  KentBeck
+  garybernhardt
+  noelrap
+  joshsusser
+  j3
+  ryandotsmith
+  brixen
+  ReinH
+  mattyoho
+  indirect
+  mislav
+  bscofield
+  greggpollack
+  dbrady
+  MilesForrest
 )
+
+class PoolingWorker
+  include Celluloid
+
+  def execute &block
+    yield
+  end
+end
+
+# run a certain number at a time max
+work_pool = PoolingWorker.pool(size: 10)
 
 futures = []
 
 twitter.tweets_from(tweeters).each do |tweet|
-  futures << Celluloid::Future.new do
+  futures << work_pool.future.execute do
     chain = FilterChain.new
     chain << FindsLinksFilter.new
     chain << ProbablyWorthWatching::Logger.new(stdout_collector, prefixer("Got past FindsLinksFilter"))

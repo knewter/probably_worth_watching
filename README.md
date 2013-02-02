@@ -39,3 +39,8 @@ Then the chain can be executed on a given tweet by calling
 To run the tests:
 
     rake
+
+## Examples
+There are a few examples in the `examples` directory.  The most impressive one
+is the `ruby_video_extractor.rb` file, in that it uses celluloid to churn
+through an impressive number of tweets fairly quickly.
