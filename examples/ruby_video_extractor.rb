@@ -35,11 +35,24 @@ def prefixer message
   end
 end
 
+video_printer = lambda do |tweet|
+  String.new.tap do |s|
+    s << tweet.inspect + "\n"
+    tweet.videos.each do |video|
+      s << "title: " + video.title + "\n"
+      s << "description: " + video.description + "\n"
+      s << "url: " + video.url + "\n"
+      s << "----------" + "\n" + "\n"
+    end
+  end
+end
+
 twitter = GetsTweets.new(twitter_config)
 
 tweeters = %w(
   JEG2
   avdi
+  bascule
   knewter
   adamgamble
   chadfowler
@@ -59,41 +72,28 @@ tweeters = %w(
   wycats
 )
 
-class ChainExecutor
-  include Celluloid
-
-  def initialize(output, collector)
-    @output = output
-    @collector = collector
-  end
-
-  def execute(tweet)
-    video_printer = lambda do |tweet|
-      String.new.tap do |s|
-        s << tweet.inspect + "\n"
-        tweet.videos.each do |video|
-          s << "title: " + video.title + "\n"
-          s << "description: " + video.description + "\n"
-          s << "url: " + video.url + "\n"
-          s << "----------" + "\n" + "\n"
-        end
-      end
-    end
-
-    chain = FilterChain.new
-    chain << FindsLinksFilter.new
-    chain << ProbablyWorthWatching::Logger.new(@collector, prefixer("Got past FindsLinksFilter"))
-    chain << FindsVideosFilter.new
-    chain << ProbablyWorthWatching::Logger.new(@collector, prefixer("================= Got past FindsVideosFilter ==================="))
-    chain << GathersVideoMetadataAnalyzer.new
-    chain << ProbablyWorthWatching::Logger.new(@output, video_printer)
-    chain.execute(tweet)
-  end
-end
+futures = []
 
 twitter.tweets_from(tweeters).each do |tweet|
-  ChainExecutor.new(output, stdout_collector).async.execute(tweet)
+  futures << Celluloid::Future.new do
+    chain = FilterChain.new
+    chain << FindsLinksFilter.new
+    chain << ProbablyWorthWatching::Logger.new(stdout_collector, prefixer("Got past FindsLinksFilter"))
+    chain << FindsVideosFilter.new
+    chain << ProbablyWorthWatching::Logger.new(stdout_collector, prefixer("================= Got past FindsVideosFilter ==================="))
+    chain << GathersVideoMetadataAnalyzer.new
+    chain << ProbablyWorthWatching::Logger.new(output, video_printer)
+    begin
+      Timeout::timeout(120) do
+        chain.execute(tweet)
+      end
+    rescue Timeout::Error
+      stdout_collector.puts "There was a timeout for one of the chains, ignoring..."
+    end
+  end
 end
+
+futures.map(&:value)
 
 output.rewind
 puts "\n\n\n----------------------------\n"
