@@ -13,11 +13,11 @@ class IrcLogLineTweetFaker
 
   private
   def author
-    author_catcher.match(log_line)[1].strip
+    author_catcher.match(log_line)[1].strip rescue ""
   end
 
   def content
-    content_catcher.match(log_line)[1].strip
+    content_catcher.match(log_line)[1].strip rescue ""
   end
 
   def author_catcher
