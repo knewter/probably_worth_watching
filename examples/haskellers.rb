@@ -1,0 +1,57 @@
+class Haskellers
+  def initialize
+  end
+
+  def twitter_handles
+    %w(
+      donsbot
+      shapr
+      ChrisDornan
+      simonmar
+      TacticalGrace
+      steshaw
+      paulcc_two
+      bos31337
+      conal
+      franlinchen
+      conradparker
+      cdsmithus
+      bartcopp
+      satnamsingh
+      shapr
+      alpmestan
+      morabbin
+      fpgeek
+      alpheccar
+      eleganesh
+      michiexile
+      alastair_d_reid
+      ezyang
+      jlouis666
+      TacticalGrace
+      the_loisch
+      sigfpe
+      dstcruz
+      snoyberg
+      rrnewton
+      kazooya
+      copumpkin
+      tomlokhorst
+      kowey
+      jyp_returns
+      juhp
+      paulcc_two
+      eleganesh
+      MeldingMonads
+      Itkovian
+      bos31337
+      dcoutts
+      _adept_
+      jff
+      nbrob
+      eassumption
+      alexandersgreen
+      ccshan
+    )
+  end
+end
