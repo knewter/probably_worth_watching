@@ -17,9 +17,9 @@ module ProbablyWorthWatching
           t.add_videos videos
         end
       rescue
-        STDOUT.puts "GathersVideoMetadataAnalyzer failed on #{object.inspect}\n"
-        STDOUT.puts object.videos.join("\n")
-        STDOUT.puts "---------------\n"
+        warn "GathersVideoMetadataAnalyzer failed on #{object.inspect}\n"
+        warn object.videos.join("\n")
+        warn "---------------\n"
         nil
       end
     end
