@@ -1,10 +1,11 @@
-require 'virtus'
+require 'data_mapper'
 
 module ProbablyWorthWatching
   class Tweet
-    include Virtus
+    include DataMapper::Resource
 
-    attribute :author, String
-    attribute :content, String
+    property :id, Serial
+    property :author, String
+    property :content, String
   end
 end

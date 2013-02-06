@@ -1,4 +1,6 @@
 require 'celluloid'
+require 'each_with_progress'
+
 require_relative '../lib/probably_worth_watching'
 include ProbablyWorthWatching
 
@@ -31,7 +33,7 @@ class IrcVideoExtractor
 
     futures = []
 
-    fake_tweets.each do |tweet|
+    fake_tweets.each_with_progress do |tweet|
       futures << work_pool.future.execute do
         chain = FilterChain.new
         chain << FindsLinksFilter.new
@@ -50,7 +52,11 @@ class IrcVideoExtractor
       end
     end
 
-    futures.map(&:value)
+    STDOUT.puts "OK, get the futures"
+
+    futures.each_with_progress do |f|
+      f.value
+    end
 
     output.rewind
     puts "\n\n\n----------------------------\n"

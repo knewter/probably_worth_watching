@@ -1,13 +1,14 @@
 require 'uri'
-require 'virtus'
+require 'data_mapper'
 
 module ProbablyWorthWatching
   class Video
-    include Virtus
+    include DataMapper::Resource
 
-    attribute :title, String
-    attribute :description, String
-    attribute :duration, Seconds
-    attribute :url, Url
+    property :id, Serial
+    property :title, Text
+    property :description, Text
+    property :duration, Object
+    property :url, Object
   end
 end

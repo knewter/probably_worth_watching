@@ -25,6 +25,8 @@ module ProbablyWorthWatching
           URI.parse(link)
         rescue URI::InvalidURIError
           false
+        rescue
+          false
         end
       end
     end

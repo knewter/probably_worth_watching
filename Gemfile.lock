@@ -10,23 +10,74 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.2.8)
     ansi (1.4.3)
-    backports (2.6.7)
+    bcrypt-ruby (3.0.1)
     builder (3.1.4)
     celluloid (0.12.4)
       facter (>= 1.6.12)
       timers (>= 1.0.0)
     coderay (1.0.8)
-    descendants_tracker (0.0.1)
+    data_mapper (1.2.0)
+      dm-aggregates (~> 1.2.0)
+      dm-constraints (~> 1.2.0)
+      dm-core (~> 1.2.0)
+      dm-migrations (~> 1.2.0)
+      dm-serializer (~> 1.2.0)
+      dm-timestamps (~> 1.2.0)
+      dm-transactions (~> 1.2.0)
+      dm-types (~> 1.2.0)
+      dm-validations (~> 1.2.0)
+    data_objects (0.10.12)
+      addressable (~> 2.1)
+    dm-aggregates (1.2.0)
+      dm-core (~> 1.2.0)
+    dm-constraints (1.2.0)
+      dm-core (~> 1.2.0)
+    dm-core (1.2.0)
+      addressable (~> 2.2.6)
+    dm-do-adapter (1.2.0)
+      data_objects (~> 0.10.6)
+      dm-core (~> 1.2.0)
+    dm-migrations (1.2.0)
+      dm-core (~> 1.2.0)
+    dm-serializer (1.2.2)
+      dm-core (~> 1.2.0)
+      fastercsv (~> 1.5)
+      json (~> 1.6)
+      json_pure (~> 1.6)
+      multi_json (~> 1.0)
+    dm-sqlite-adapter (1.2.0)
+      dm-do-adapter (~> 1.2.0)
+      do_sqlite3 (~> 0.10.6)
+    dm-timestamps (1.2.0)
+      dm-core (~> 1.2.0)
+    dm-transactions (1.2.0)
+      dm-core (~> 1.2.0)
+    dm-types (1.2.2)
+      bcrypt-ruby (~> 3.0)
+      dm-core (~> 1.2.0)
+      fastercsv (~> 1.5)
+      json (~> 1.6)
+      multi_json (~> 1.0)
+      stringex (~> 1.4)
+      uuidtools (~> 2.1)
+    dm-validations (1.2.0)
+      dm-core (~> 1.2.0)
+    do_sqlite3 (0.10.12)
+      data_objects (= 0.10.12)
+    each_with_progress (0.2)
     facter (1.6.17)
     faraday (0.8.4)
       multipart-post (~> 1.1)
+    fastercsv (1.5.5)
     httparty (0.10.2)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
     httpauth (0.2.0)
     httpclient (2.3.2)
     json (1.7.6)
+    json_pure (1.7.6)
     jwt (0.1.5)
       multi_json (>= 1.0)
     metaclass (0.0.1)
@@ -48,6 +99,7 @@ GEM
     rack (1.5.1)
     simple_oauth (0.2.0)
     slop (3.4.3)
+    stringex (1.5.1)
     timers (1.1.0)
     turn (0.9.6)
       ansi
@@ -55,15 +107,13 @@ GEM
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
+    uuidtools (2.1.3)
     vimeo (1.5.3)
       httparty (>= 0.4.5)
       httpclient (>= 2.1.5.2)
       json (>= 1.1.9)
       multipart-post (>= 1.0.1)
       oauth (>= 0.4.3)
-    virtus (0.5.4)
-      backports (~> 2.6.1)
-      descendants_tracker (~> 0.0.1)
     youtube_it (2.1.12)
       builder
       faraday (~> 0.8)
@@ -77,6 +127,9 @@ PLATFORMS
 
 DEPENDENCIES
   celluloid
+  data_mapper
+  dm-sqlite-adapter
+  each_with_progress
   httparty
   minitest
   mocha
@@ -85,5 +138,4 @@ DEPENDENCIES
   turn
   twitter
   vimeo
-  virtus
   youtube_it

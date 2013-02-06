@@ -36,7 +36,7 @@ class TwitterVideoExtractor
     twitter = GetsTweets.new(twitter_config)
 
     # run a certain number at a time max
-    work_pool = PoolingWorker.pool(size: 10)
+    work_pool = PoolingWorker.pool(size: 100)
 
     futures = []
 
@@ -48,6 +48,7 @@ class TwitterVideoExtractor
         chain << FindsVideosFilter.new
         chain << ProbablyWorthWatching::Logger.new(stdout_collector, prefixer("================= Got past FindsVideosFilter ==================="))
         chain << GathersVideoMetadataAnalyzer.new
+        chain << PersistsVideos.new
         chain << ProbablyWorthWatching::Logger.new(output, video_printer)
         begin
           Timeout::timeout(120) do
