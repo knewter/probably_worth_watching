@@ -1,0 +1,6 @@
+div.videos
+  - @videos.each do |video|
+    div.video
+      a( href=video.url )= video.title
+      p= video.description
+      hr
