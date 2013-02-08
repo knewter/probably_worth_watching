@@ -22,6 +22,7 @@ module ProbablyWorthWatching
           video.title = info['title']
           video.description = info['description']
           video.url = info['url']
+          video.embed = %Q(<iframe src="http://player.vimeo.com/video/#{id}" width="960" height="540" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>)
         end
       end
 

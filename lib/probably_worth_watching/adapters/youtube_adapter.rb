@@ -14,6 +14,7 @@ module ProbablyWorthWatching
           video.title = info.title
           video.description = info.description
           video.url = info.embed_url
+          video.embed = %Q(<iframe src="#{video.url}" width="960" height="540" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>)
         end
       end
 

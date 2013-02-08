@@ -10,5 +10,6 @@ module ProbablyWorthWatching
     property :description, Text
     property :duration, Object
     property :url, Object
+    property :embed, Text
   end
 end
