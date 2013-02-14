@@ -7,7 +7,7 @@ require 'data_mapper'
 DataMapper::Logger.new($stdout, :debug)
 
 # An in-memory Sqlite3 connection:
-sqlite_url = "sqlite:///#{File.expand_path('../../videos.sqlite', __FILE__)}")
+sqlite_url = "sqlite:///#{File.expand_path('../../videos.sqlite', __FILE__)}"
 DataMapper.setup(:default, ENV['DATABASE_URL'] || sqlite_url)
 
 require_relative 'probably_worth_watching/filter_chain'
