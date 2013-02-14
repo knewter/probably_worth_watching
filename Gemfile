@@ -19,4 +19,5 @@ gem 'youtube_it'
 gem 'each_with_progress'
 
 gem 'sinatra'
+gem 'sinatra-contrib'
 gem 'slim'
