@@ -153,6 +153,7 @@ DEPENDENCIES
   dm-sqlite-adapter
   each_with_progress
   httparty
+  json
   minitest
   mocha
   nokogiri
