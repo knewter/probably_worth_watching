@@ -7,7 +7,8 @@ gem 'mocha'
 gem 'pry', github: 'pry/pry'
 # end test bits
 
-gem 'dm-sqlite-adapter'
+gem 'dm-sqlite-adapter', group: :development
+gem 'dm-postgres-adapter', group: :production
 gem 'data_mapper'
 #gem 'http', github: 'tarcieri/http'
 gem 'httparty'
