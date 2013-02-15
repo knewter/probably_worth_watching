@@ -1,3 +1,3 @@
 require './site/probably_worth_watching_app'
 
-ProbablyWorthWatchingApp.run!
+run ProbablyWorthWatchingApp.new
