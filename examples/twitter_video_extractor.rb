@@ -35,29 +35,35 @@ class TwitterVideoExtractor
 
     twitter = GetsTweets.new(twitter_config)
 
+    class PoolingWorker
+      include Celluloid
+
+      def execute(tweet)
+        chain = FilterChain.new
+        chain << FindsLinksFilter.new
+        #chain << ProbablyWorthWatching::Logger.new(stdout_collector, prefixer("Got past FindsLinksFilter"))
+        chain << FindsVideosFilter.new
+        #chain << ProbablyWorthWatching::Logger.new(stdout_collector, prefixer("================= Got past FindsVideosFilter ==================="))
+        chain << GathersVideoMetadataAnalyzer.new
+        chain << PersistsVideos.new
+        #chain << ProbablyWorthWatching::Logger.new(output, video_printer)
+        begin
+          Timeout::timeout(120) do
+            chain.execute(tweet)
+          end
+        rescue Timeout::Error
+          #stdout_collector.puts "There was a timeout for one of the chains, ignoring..."
+        end
+      end
+    end
+
     # run a certain number at a time max
     work_pool = PoolingWorker.pool(size: 100)
 
     futures = []
 
     twitter.tweets_from(tweeters).each do |tweet|
-      futures << work_pool.future.execute do
-        chain = FilterChain.new
-        chain << FindsLinksFilter.new
-        chain << ProbablyWorthWatching::Logger.new(stdout_collector, prefixer("Got past FindsLinksFilter"))
-        chain << FindsVideosFilter.new
-        chain << ProbablyWorthWatching::Logger.new(stdout_collector, prefixer("================= Got past FindsVideosFilter ==================="))
-        chain << GathersVideoMetadataAnalyzer.new
-        chain << PersistsVideos.new
-        chain << ProbablyWorthWatching::Logger.new(output, video_printer)
-        begin
-          Timeout::timeout(120) do
-            chain.execute(tweet)
-          end
-        rescue Timeout::Error
-          stdout_collector.puts "There was a timeout for one of the chains, ignoring..."
-        end
-      end
+      futures << work_pool.future.execute(tweet)
     end
 
     futures.map(&:value)
@@ -87,14 +93,6 @@ class TwitterVideoExtractor
 
     def <<(str)
       STDOUT << str
-    end
-  end
-
-  class PoolingWorker
-    include Celluloid
-
-    def execute &block
-      yield
     end
   end
 end
