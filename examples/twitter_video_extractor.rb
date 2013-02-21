@@ -36,7 +36,7 @@ class TwitterVideoExtractor
     twitter = GetsTweets.new(twitter_config)
 
     # run a certain number at a time max
-    work_pool = PoolingWorker.pool(size: 100)
+    work_pool = PoolingWorker.pool(size: 30)
 
     futures = []
 
