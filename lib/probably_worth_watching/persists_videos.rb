@@ -17,7 +17,7 @@ module ProbablyWorthWatching
     end
 
     def exists?(video)
-      Video.all(url: video.url).any?
+      Video.all(embed: video.embed).any?
     end
   end
 end
