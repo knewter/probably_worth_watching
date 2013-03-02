@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://www.rubygems.org'
 
 # test bits
 gem 'minitest'

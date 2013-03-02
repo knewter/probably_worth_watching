@@ -8,7 +8,7 @@ GIT
       slop (~> 3.4)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://www.rubygems.org/
   specs:
     addressable (2.2.8)
     ansi (1.4.3)
