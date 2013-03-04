@@ -1,4 +1,7 @@
 # Probably Worth Watching
+
+[![Code Climate](https://codeclimate.com/github/knewter/probably_worth_watching.png)](https://codeclimate.com/github/knewter/probably_worth_watching)
+
 This is a ruby tool for analyzing tweets and extracting probably-relevant videos
 by being fed with a list of twitter handles that are relevant about a given
 topic.
