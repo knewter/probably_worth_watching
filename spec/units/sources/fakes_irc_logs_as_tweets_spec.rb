@@ -1,8 +1,8 @@
-require_relative '../spec_helper'
+require_relative '../../spec_helper'
 
 describe FakesIrcLogsAsTweets do
   let(:input_string) do
-    sample_log_path = File.expand_path("../samples/irc_log_sample.txt", __FILE__)
+    sample_log_path = File.expand_path("../../samples/irc_log_sample.txt", __FILE__)
     @sample_page = File.read(sample_log_path)
   end
 

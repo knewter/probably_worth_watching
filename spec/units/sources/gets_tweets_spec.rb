@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative '../../spec_helper'
 
 describe GetsTweets do
   let(:twitter_configuration_data) do
