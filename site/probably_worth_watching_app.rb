@@ -6,12 +6,12 @@ require_relative '../lib/probably_worth_watching'
 
 class ProbablyWorthWatchingApp < Sinatra::Base
   get '/' do
-    @videos = ProbablyWorthWatching::Video.all.reverse
+    @videos = ProbablyWorthWatching::Video.all(order: [:id.desc], limit: 100)
     slim :index
   end
 
   get '/videos.json' do
-    @videos = ProbablyWorthWatching::Video.all.reverse
+    @videos = ProbablyWorthWatching::Video.all(order: [:id.desc], limit: 100)
     content_type :json
     if callback = params[:callback]
       "#{callback}(#{@videos.to_json})"
